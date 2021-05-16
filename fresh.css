@@ -14,7 +14,7 @@
   --internal: #ffcd50;
   --RatioBlue: #1685ca;
   --UploadGreen: #50fa7b;
-  --DownBonusRed: #ff5555;
+  --DownBonusRed: hsl(0, 60%, 50%);
   /* --border: 1px solid var(--bordercolor); */
   --bordercolor: transparent;
   --innerbordercolor: rgba(57, 135, 199, 0.20);
@@ -826,34 +826,64 @@ img[src*="starbig.gif"] {
   -o-transition: all 0.25s ease;
   transition:all 0.25s ease;
 }
-.alert-box--news {
-  background-color: #663399;
-  color: var(--white);
+a.alert-box--news {
+  display: flex;
+  align-items: center;
+  background: #16171c;
+  color: var(--DownBonusRed);
   font-weight: 700;
-  font-size: .6875rem
+  font-size: 0;
+  height: 1.25rem;
+  padding: 0 0.4rem;
+  border:1px solid ;
+  order: -1;
+  -moz-transition: all 0.25s ease; 
+  -webkit-transition: all 0.25s ease; 
+  -o-transition: all 0.25s ease;
+  transition:all 0.25s ease;
+}
+.alert-box--news::after {
+  content: "News"; 
+  font-size: .6875rem;
+  position: relative;
+  vertical-align: middle;
+}
+a.alert-box:hover {
+  background: var(--svgbghover);
+  color: var(--dark);
+  border:1px solid var(--innerbordercolor);
+  -moz-transition: all 0.25s ease; 
+  -webkit-transition: all 0.25s ease; 
+  -o-transition: all 0.25s ease;
+  transition:all 0.25s ease;
 }
 .alert-box--notifications {
   display: flex;
   align-items: center;
   background-color: #16171c;
-  color: hsla(135, 43%, 50%, 0.85);
+  /* color: hsla(135, 43%, 50%, 0.85); */
+  color: var(--menuFont);
   font-weight: 700;
   font-size: .6875rem;
   height: 1.25rem;
   padding: 0 0.4rem;
   gap: 0.25rem;
   cursor: pointer;
-  border:1px solid var(--innerbordercolor)
+  border:1px solid var(--innerbordercolor);
+  -moz-transition: all 0.25s ease; 
+  -webkit-transition: all 0.25s ease; 
+  -o-transition: all 0.25s ease;
+  transition:all 0.25s ease;
 }
 .js-notifications-count {
   color: inherit;
 }
-.alert-box--notifications:active{
+/* .alert-box--notifications:active{
   background-color: hsla(135, 43%, 49%, 0.849);
   color: var(--dark);
   padding: 0 0.4rem;
   transition: all ease-in-out .25s;
-}
+} */
 .notification-overlay {
   position: absolute;
   z-index: 100;
@@ -1017,6 +1047,11 @@ html body table.main tbody tr td.bottom div#resultsarea p {
 #searchbox > tbody:nth-child(1) > tr:nth-child(1) > th:nth-child(1) {
   padding: .4rem 0
 }
+#moresearch1,
+#moresearch5,
+#moresearch4{
+  padding: 0.5em 1em;
+}
 #moresearch3 {
   border-top: 1px solid var(--innerbordercolor);
   padding: .5em 1em;
@@ -1130,12 +1165,21 @@ table.bottom > tbody:nth-child(1) > tr:nth-child(4) > td:nth-child(8) > a:nth-ch
   min-width: 130px;
   text-align: right
 }
-#moresearch1 > td:nth-child(1) {
+/* #moresearch1 > td:nth-child(1) {
   padding: .7rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   align-content: center
+} */
+#moresearch1 > td:nth-child(1) {
+	/* padding: 0 0 0 .7rem; */
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: center;
+	gap: 0.3rem;
 }
 #fromCal,
 #toCal {
@@ -1190,7 +1234,7 @@ td.bottom:nth-child(9) {
   padding-left: 0!important
 }
 #moresearch4 td {
-  padding: 0 0 0 .7rem;
+  /* padding: 0 0 0 .7rem; */
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -1211,13 +1255,13 @@ td.bottom:nth-child(9) {
   border-radius: var(--inputbr)
 }
 #moresearch4 {
-  width: 350px;
-  flex: 1 1;
+  /* padding: 0.25rem 0; */
+  flex: 1;
   white-space: nowrap
 }
 #moresearch5 {
-  width: 400px;
-  flex: 9999;
+  /* width: 400px; */
+  flex: 1;
   box-sizing: border-box!important
 }
 #yeargt,
@@ -1550,10 +1594,10 @@ td.bottom:nth-child(2)>table:nth-child(1)>tbody:nth-child(1)>tr:nth-child(1) b {
 }
 #moresearch5 > td:nth-child(1) {
   max-width: 800px;
-  padding: .2rem .7rem;
+  /* padding: .2rem .7rem; */
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 0.3rem
 }
@@ -2254,6 +2298,9 @@ button[onclick^="location"]:hover {
   border-radius: 0.25rem;
   border: 1px solid var(--innerbordercolor)
 }
+#torrent-list td > a[href*="/film/info"]:hover {
+  filter: brightness(110%)
+}
 #torrent-list td:nth-child(3) > span.genres {
   color: transparent;
   filter: brightness(80%)
@@ -2262,6 +2309,7 @@ button[onclick^="location"]:hover {
   text-align: center;
   font-weight: 100
 }
+#torrent-list tbody tr td.center > em:only-child,
 #torrent-list tbody tr td.center > b > i,
 td.center span {
   float: right;
@@ -2853,6 +2901,7 @@ td.bottom > h1 + table[width="660"][cellpadding="4"] tr:nth-child(3) > td {
   border: 1px solid var(--innerbordercolor);
   border-radius: 0 0 var(--innerbr) var(--innerbr);
   border-top: 0;
+  min-width: 50%;
 }
 td.bottom > h1 + table[width="660"][cellpadding="4"] tr:nth-child(4) > td > form {
   display: flex;
@@ -2877,6 +2926,45 @@ td.bottom > h1 + table[width="660"][cellpadding="4"] tr:nth-child(4):last-child 
   padding: 0 0.4rem;
   border-radius: var(--inputbr);
   background: var(--input);
+}
+td.bottom > h1 + form[action="inbox.php"][method="post"] {
+  background-color: var(--main);
+  filter: var(--filterdropshadow);
+  padding: 1rem;
+  border-radius: var(--mainbr);
+  max-width: 64rem;
+  box-sizing: border-box;
+}
+td.bottom > h1 + form[action="inbox.php"][method="post"] > table > tbody {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+  gap: 0.25rem;
+}
+td.bottom > h1 + form[action="inbox.php"][method="post"] > table > tbody > tr{
+  display: flex;
+  /* flex-flow: row wrap; */
+  align-items: center;
+ line-height: 1rem;
+ /* padding: 0.2rem 0; */
+}
+td.bottom > h1 + form[action="inbox.php"][method="post"] > table > tbody > tr > th {
+ flex: 0 1 10%;
+ white-space: nowrap;
+ text-align: right;
+ /* align-self: center; */
+ padding: 0.15rem;
+ padding-right: 0.5rem;
+}
+td.bottom > h1 + form[action="inbox.php"][method="post"] > table > tbody > tr > td {
+  flex: 1 1 78%;
+  /* align-self: center; */
+}
+/* td.bottom > h1 + form[action="inbox.php"][method="post"] > table > tbody > tr > th > br {
+  display: none;
+} */
+td.bottom > h1 + form[action="inbox.php"][method="post"] input[type="checkbox"] {
+  vertical-align: middle;
 }
 .std-content > tbody:nth-child(1) > tr:nth-child(1) > td > table:nth-child(3n-1),
 .std-content > tbody:nth-child(1) > tr:nth-child(1) > td > table:nth-last-child(2),
@@ -4273,7 +4361,9 @@ input[type=button]:active,
 input[type=submit]:active,
 input[type=reset]:active,
 td.bottom > h1 + table[width="660"][cellpadding="4"] tr:nth-child(4):last-child td font a:active,
-div.list-links > a:active  {
+div.list-links > a:active,
+a.alert-box:active,
+a.alert-box:focus  {
   border: 1px solid var(--borderfocus);
   animation: gradient 300ms;
   background: linear-gradient(45deg, #7b81ec, #3bd1d3);
@@ -5045,11 +5135,20 @@ a.info__title {
   min-width: min-content;
   background: inherit;
  }
+ td.embedded > div[align=center]:only-child {
+   display: flex;
+   flex-flow: column wrap;
+   justify-content: center;
+ }
  td.embedded > div[align=center]:only-child > form {
  background: var(--main);
  box-sizing: border-box;
  padding: 1rem;
  border-radius: var(--mainbr);
  max-width: 64rem;
- min-width: max-content;
+ min-width: min-content;
  }
+ td.embedded > div[align=center]:only-child > form td.heading {
+text-align: right;
+padding-right: 0.25rem;
+}
