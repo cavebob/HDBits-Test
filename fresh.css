@@ -1,6 +1,8 @@
 :root {
-  --main: rgba(16,17,21);
-  --dark: rgb(6, 6, 7);
+  --main: hsl(228, 14%, 10%);
+  /* --main: rgba(16,17,21); */
+  --dark: hsl(240, 15%, 5%);
+  /* --dark: rgb(6, 6, 7); */
   --white: hsl(212, 28%, 72%);
   --heading: hsla(31, 100%, 65%, 0.843);
   --tagText: #000000;
@@ -294,13 +296,42 @@ body > table.main:nth-child(3) {
 }
 .menunavigation:hover > a.normal,
 .menunavigation_new:hover > a.normal{
+  /* background-position: center; */
   background: var(--svgbghover);
   border-radius: var(--inputbr);
   color: var(--dark);
   -moz-transition: all 0.25s ease; 
   -webkit-transition: all 0.25s ease; 
   -o-transition: all 0.25s ease;
-  transition:all 0.25s ease;
+  transition:all 0.3s ease;
+}
+/* .menunavigation:active > a.normal:active {
+  background: linear-gradient(145deg, rgb(30, 172, 220), rgb(89, 149, 232));
+  border-radius: var(--inputbr);
+  background: #94b3df radial-gradient(circle, transparent 1%, #87a7d5 1%) center/100%;
+  transition: all 5s ease;
+} */
+/* .menunavigation:after > a.normal{
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgb(160, 130, 130) 10%, transparent 10.01%);
+  transform: scale(10,10);
+  opacity: 0;
+  transition: transform .5s, opacity 1s;
+} */
+.tab a:active,
+.menunavigation:active > a.normal {
+  filter: brightness(120%);
+  transition:all .25s cubic-bezier(.25,.46,.45,.94); 
+}
+.tab.selected {
+  filter:brightness(120%)
 }
 @-webkit-keyframes Gradient {
   0%{background-position:0% 50%}
@@ -851,7 +882,7 @@ a.alert-box--news {
 a.alert-box:hover {
   background: var(--svgbghover);
   color: var(--dark);
-  border:1px solid var(--innerbordercolor);
+  /* border:1px solid var(--innerbordercolor); */
   -moz-transition: all 0.25s ease; 
   -webkit-transition: all 0.25s ease; 
   -o-transition: all 0.25s ease;
@@ -1614,7 +1645,7 @@ div.chosen-container\ chosen-container-single {
   display: none!important
 }
 div.chosen-container.chosen-container-multi.chosen.chosen-with-drop.chosen-container-active {
-  min-width: max-content;
+  /* min-width: max-content; */
   border-radius: var(--inputbr) var(--inputbr) 0 0!important
 }
 .chosen-container * {
@@ -2352,7 +2383,7 @@ table#torrent-list tbody td:nth-child(7) {
   background: rgba(255,255,255,.033);
   line-height: normal
 }
-.alert-box--pm,
+/* .alert-box--pm, */
 .tag.moderate {
   background-color: var(--DownBonusRed);
   color: var(--dark)
@@ -4029,6 +4060,7 @@ td.embedded > p:first-child+h2:only-of-type:not(#details) {
     font-size: 0.8125rem;
     font-weight: bold;
     color: var(--dark);
+    filter: brightness(100%);
     -moz-transition: all 0.25s ease; 
     -webkit-transition: all 0.25s ease; 
     -o-transition: all 0.25s ease;
@@ -4036,14 +4068,16 @@ td.embedded > p:first-child+h2:only-of-type:not(#details) {
 }
 .rc__toggle.js-rc-toggle:active,
 .film_morelink:active, a.tv_morelink:active  {
-  animation: gradient 300ms;
+  /* animation: gradient 300ms;
   background: linear-gradient(45deg, #7b81ec, #3bd1d3);
   color: var(--dark);
   box-shadow: none;
   -moz-transition: all 0.25s ease; 
   -webkit-transition: all 0.25s ease; 
   -o-transition: all 0.25s ease;
-  transition:all 0.5s ease; 
+  transition:all 0.5s ease;  */
+  filter: brightness(120%);
+transition:all .25s cubic-bezier(.25,.46,.45,.94); 
 }
 img.rc__film__poster {
     border-radius: 0.5rem;
@@ -4333,7 +4367,7 @@ td.text {
   padding: 0;
   margin: -.25rem 0;
 }
-@keyframes gradient {
+/* @keyframes gradient1 {
   0% {
     background: radial-gradient(circle at center, rgba( 255, 125 , 125, 0 ) 0%,  inherit 0%, inherit 100%);
   }
@@ -4350,7 +4384,7 @@ td.text {
     color: var(--dark);
     background: radial-gradient(circle at center, #f88 99%, inherit 100%, inherit 100%);
   }
-}
+} */
 .btn:focus,
 button:focus,
 input[type=button]:focus,
@@ -4359,22 +4393,32 @@ input[type=reset]:focus,
 td.bottom > h1 + table[width="660"][cellpadding="4"] tr:nth-child(4):last-child td font a:focus,
 .btn:active,
 button:active,
-input[type=button]:active,
+input[type=button]:active, input[type=button]:focus,
 input[type=submit]:active,
 input[type=reset]:active,
 td.bottom > h1 + table[width="660"][cellpadding="4"] tr:nth-child(4):last-child td font a:active,
-div.list-links > a:active,
-a.alert-box:active,
-a.alert-box:focus  {
+div.list-links > a:active {
   border: 1px solid var(--borderfocus);
-  animation: gradient 300ms;
-  background: linear-gradient(45deg, #7b81ec, #3bd1d3);
-  color: var(--dark);
-  box-shadow: none;
-  -moz-transition: all 0.25s ease; 
+  filter: brightness(120%);
+  transition:all .25s cubic-bezier(.25,.46,.45,.94); 
+  /* animation: gradient1 3s linear; */
+  /* background: linear-gradient(170deg,  hsl(200, 76%, 55%), hsl(190, 63%, 55%)); */
+  /* animation: gradient1 3s cubic-bezier(.25,.46,.45,.94) infinite; */
+  /* color: var(--dark); */
+  /* box-shadow: inset 0px 2px 10px 5px hsl(195, 76%, 75%, 0.3); */
+  /* -moz-transition: all 0.25s ease; 
 -webkit-transition: all 0.25s ease; 
--o-transition: all 0.25s ease;
-transition:all 0.5s ease; 
+-o-transition: all 0.25s ease; */
+/* color: black; */
+/* background-position: -50%; */
+/* filter:grayscale(10%); */
+/* filter: hue-rotate(10deg); */
+/* transform-style:rotate(180deg) */
+}
+a.alert-box:active,
+a.alert-box:focus {
+  filter: brightness(120%);
+  transition:all .25s cubic-bezier(.25,.46,.45,.94); 
 }
 body > table.main > tbody > tr > td.bottom > h1.center + p + table[width="750"],
 body > table.main > tbody > tr > td.bottom > p + table[width="750"] + p:empty + p + table[width="750"] {
@@ -5044,7 +5088,7 @@ div.list-links > a {
   gap: 0.5rem;
   overflow: hidden;
   background: rgb(27, 27, 36);
-  background: linear-gradient(335deg, hsl(240, 50%, 7%) 15%, hsl(205, 70%, 25%));
+  /* background: linear-gradient(335deg, hsl(240, 50%, 7%) 15%, hsl(205, 70%, 25%)); */
  }
  div.info_row {
   border-bottom: 0;
