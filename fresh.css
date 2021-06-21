@@ -127,7 +127,9 @@ body {
   margin: 0;
   text-decoration: none;
   list-style: none;
-  scrollbar-color: rgb(18,18,26) rgb(10,10,10)
+  scrollbar-color: hsl(240, 20%, 20%) hsl(240, 15%, 7%)
+
+
 }
 ::selection {
   background-color: hsla(220,40%,30%,.501);
@@ -4912,27 +4914,34 @@ div.item {
   max-width: 48rem;
   height: min-content;
 	vertical-align: text-bottom;
-  border: 1px solid rgba(19, 71, 108, 0.17);
+  
+  /* border: 1px solid var(--innerbordercolor);
+  background: linear-gradient(175deg, hsl(227, 15%, 12%) 40%, hsl(205, 70%, 25%)) ; */
 }
 div.item > h2 {
   display: none;
 }
 div.item-body {
-  background: rgb(27, 27, 36);
-  background: linear-gradient(335deg, hsl(240, 50%, 7%) 15%, hsl(205, 70%, 25%));
+  /* background: hsl(227, 15%, 12%) ; */
+  background: inherit;
   box-sizing: border-box;
   padding: 0;
-  border-radius: 0 0 var(--mainbr) var(--mainbr);
+  border-radius: var(--mainbr);
   border: 0;
   display: flex;
-  flex-flow: row;
+  flex-direction: row;
   height: 12rem;
   max-width: 52rem;
-	overflow: visible;
+	overflow:hidden;
 	position: relative;
 	text-align: left;
+  border: 1px solid var(--innerbordercolor);
+  background: linear-gradient(175deg, hsl(227, 15%, 12%) 40%, hsl(205, 70%, 25%)) ;
 }
-div.item > .item-body > .rank {
+.item.tvdb .item-body {
+  flex-flow: column wrap;
+}
+div.item.imdb > .item-body > .rank {
 	font-size: 1.5rem;
   text-align: center;
 	font-weight: 400;
@@ -4944,22 +4953,104 @@ div.item > .item-body > .rank {
   left: 0px;
   color: var(--heading);
   order: 0;
-  background: rgba(6, 6, 8, 0.85);
+  /* background: hsl(228, 16%, 12%); */
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  /* flex: 0 1 100px; */
+}
+div.item.tvdb > .item-body > .rank {
+	font-size: 1.5rem;
+  text-align: center;
+	font-weight: 400;
+  padding: 1rem 0;
+	min-width: 2.2rem;
+	margin-left: 0;
+  flex: 1 0 100%;
+  color: var(--heading);
+  order: 0;
+  background: hsla(227, 15%, 12%, 0.33);
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-div.item.imdb {
-  border-radius: var(--innerbr);
+div.item.imdb, div.item.tvdb {
+  border-radius: var(--mainbr);
   overflow: hidden;
+  min-height: 12rem;
+  height: max-content;
   max-width: 52rem;
   width: 100%;
   min-width: 48rem;
+  min-height: 12rem;
+  height: fit-content;
+  max-height: 18rem;
 }
+div.item.tvdb .item-body {
+  border-radius: var(--innerbr);
+  width: 48rem;
+  max-width: 48rem;
+  /* overflow: hidden */
+}
+.item.tvdb > .item-body > div.rank + a[href*="hdbits.org/show.php?"]{
+  order: 0;
+  width: 735px;
+
+  max-height: 140px;
+  /* width: 48rem; */
+  position: inherit;
+  /* object-position: center; */
+  /* object-fit:cover; */
+  overflow: clip;
+  bottom: 0px;
+  z-index:1;
+  flex: 0 1 500px;
+}
+.item.tvdb > .item-body > a img.tv-banner {
+  /* height: auto;
+	width: auto; */
+  max-width: initial;
+  /* object-fit: cover; */
+  /* overflow: clip; */
+} 
+.item.tvdb > .item-body > div.description {
+	text-align: left;
+	margin-left: 0;
+  margin-top: 0;
+	max-height: 100%;
+	overflow: auto;
+  font-size: 0.875rem;
+  position: static;
+  padding-left: 0rem;
+  width: 100%;
+  flex: 0 1 auto;
+}
+div.item.tvdb > .item-body > div.description > .item-title {
+  display: flex;
+	font-weight: bold;
+  font-size: 1.25rem;
+  padding: 1rem;
+  /* margin-left: -0.5rem; */
+  background: hsl(240, 14%, 6%);
+}
+.item.tvdb > .item-body div.comment {
+	padding: 3px 5px;
+	background-color: hsl(240, 14%, 12%);
+  border: 0;
+	border-left: 2px solid #4d86b3;
+	margin-left: 0.5rem;
+	text-decoration: italic;
+  border-radius: 0 var(--inputbr) var(--inputbr) 0;
+  flex: 0 1 auto;
+  position:inherit;
+  bottom: 0px;
+}
+div.item.tvdb div.list-links {
+  display:none;
+}
+
 .item-body > div.rank + a[href*="imdb.com/title/tt"] {
   order: 0;
   height: 12rem;
   width: 135px;
   position: relative;
-  object-fit:cover;
+  object-fit: cover;
   overflow: clip;
   bottom: 0px;
   z-index:1;
@@ -4988,7 +5079,7 @@ div.item.imdb {
   font-size: 1.25rem;
   padding: 1rem;
   margin-left: -0.5rem;
-  background: #09090c;
+  background: hsl(240, 14%, 6%);
 }
 div.description a.js-wishlistadd {
   position: absolute;
@@ -5010,7 +5101,7 @@ div.movie-rating {
 	top: 0;
 	list-style: none;
   padding: 1rem;
-  background: #09090c;
+  background: hsl(240, 14%, 6%) ;
 }
 div.item-description {
   font-size: 0.8125rem;
@@ -5029,6 +5120,18 @@ div.list-links > a {
   -webkit-transition: all 0.25s ease;
   -o-transition: all 0.25s ease;
   transition: all .25s ease;
+}
+.item.imdb > .item-body > div.comment {
+	position: absolute;
+	left: 170px;
+	bottom: 5px;
+	padding: 3px 5px;
+	background-color: hsl(240, 14%, 12%);
+  border: 0;
+	border-left: 2px solid #4d86b3;
+	margin-left: 0.5rem;
+	text-decoration: italic;
+  border-radius: 0 var(--inputbr) var(--inputbr) 0;
 }
 .grid__item {
   display:inline-block;
